@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400&display=swap" rel="stylesheet">
+    <script type="module" src="https://unpkg.com/ionicons@5.1.2/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule="" src="https://unpkg.com/ionicons@5.1.2/dist/ionicons/ionicons.js"></script>
+    <link rel="stylesheet" href="style/style.css">
+    <title>Task manager</title>
+</head>
+
+<body>
+    <div class="container">
+        <img class="container-hero" src="img/hero.jpg" alt="hero image">
+        <form class="input-form" action="/" method="POST">
+            <input name="item" type="text">
+            <button class="item-form-btn" type="submit">
+                <ion-icon name="add-outline"></ion-icon>
+            </button>
+        </form>
+        <div class="items">
+            <ul>
+                <% itemList.forEach((e) => { %>
+                    <li>
+                    <div>
+                        <p><%= e.item %></p>
+                        <span><%= e.published.toLocaleString('en-GB', {month: 'long', year: 'numeric'}) %></span>
+                        <span><%= e.published.toLocaleTimeString('en-US') %></span>
+                    </div>
+                    <form action="/delete" method="POST" class="icon-box">
+                       <button class="delete-btn" name="deleteBtn" value="<%= e._id %>" type="submit"> <ion-icon  name="trash-outline" ></ion-icon></button>
+                    </form>
+                </li>
+                    <% }) %>
+            </ul>
+        </div>
+    </div>
+</body>
+
+</html>
